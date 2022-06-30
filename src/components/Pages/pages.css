@@ -1,0 +1,26 @@
+.home{
+    width: 100%;
+}
+.addTask-wrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    width: 100%;
+
+    
+}
+.card-body{
+    width: 400px;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgb(38, 49, 82, 0.2), 0 6px 20px 0 rgb(38, 49, 82, 0.19);
+}
+.table{
+    width: 80%;
+    margin: 10% 10%;
+}
+/* @media only screen and (max-width: 570px) {
+    .card-body{
+        width: 96%;
+        margin: 0 2%;
+    } */
+/* } */
