@@ -8,13 +8,13 @@ const Completed = () => {
   const email = user?.email;
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/completed?email=${email}`)
+    fetch(`https://enigmatic-caverns-77732.herokuapp.com/completed?email=${email}`)
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, [email, tasks]);
 
   return (
-    <div style={{width: '100%'}}>
+    <div style={{width: '100%'}} className={tasks.length <= 2 && 'noData'}>
       {tasks.length === 0 ? (
         <h1 className="text-3xl mt-5 text-center">Your archive folder is empty!</h1>
       ) : (

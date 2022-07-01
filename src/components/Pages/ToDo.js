@@ -12,7 +12,7 @@ const ToDo = () => {
   const email = user?.email;
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/myTasks?email=${email}`)
+    fetch(`https://enigmatic-caverns-77732.herokuapp.com/myTasks?email=${email}`)
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, [email, tasks]);
@@ -26,7 +26,7 @@ const ToDo = () => {
   };
   const handleCompleted = (item) => {
     console.log(item);
-    fetch(`http://localhost:5000/completed`, {
+    fetch(`https://enigmatic-caverns-77732.herokuapp.com/completed`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -39,7 +39,7 @@ const ToDo = () => {
       });
   };
   const handleRemoving = (id) => {
-    fetch(`http://localhost:5000/task/${id}`, {
+    fetch(`https://enigmatic-caverns-77732.herokuapp.com/task/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -51,7 +51,7 @@ const ToDo = () => {
     return <Loading></Loading>;
   }
   return (
-    <div>
+    <div className={tasks.length <= 2 && "noData"}>
       {tasks.length === 0 ? (
         <h1 className="text-3xl mt-5 text-center">There is no task for you!</h1>
       ) : (

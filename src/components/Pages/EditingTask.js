@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase/firebase.init";
 
 const EditingTask = () => {
+  const [user, loading, error] = useAuthState(auth);
   const [task, setTask] = useState({});
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/taskediting/${id}`)
+    fetch(`https://enigmatic-caverns-77732.herokuapp.com/taskediting/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTask(data);
@@ -17,18 +20,31 @@ const EditingTask = () => {
     const category = e.target.category.value;
     const time = e.target.time.value;
     const newDate = e.target.newDate.value;
+    const email = user?.email;
     const allData = {
       task,
       category,
       time,
       newDate,
+      email
     };
-    if(task && category && time && newDate){
+    if (task && category && time && newDate && email) {
 
-        console.log(allData);
+        fetch(`https://enigmatic-caverns-77732.herokuapp.com/editTask/${email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(allData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+          alert("Data updated successfully")
+        });
     }
-    else{
-        alert('You must fill out the input fields')
+     else {
+      alert("You must fill out the input fields");
     }
   };
   return (

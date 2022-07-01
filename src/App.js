@@ -9,6 +9,7 @@ import Completed from "./components/Pages/Completed";
 import EditingTask from "./components/Pages/EditingTask";
 import Home from "./components/Pages/Home";
 import ToDo from "./components/Pages/ToDo";
+import Footer from "./components/Shared/Footer";
 import Navbar from "./components/Shared/Navbar";
 import RequireAuth from "./components/Shared/RequireAuth";
 
@@ -55,6 +56,7 @@ function App() {
         <Route path="/signUp" element={<SignUp></SignUp>}></Route>
         <Route path="/signIn" element={<SignIn></SignIn>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

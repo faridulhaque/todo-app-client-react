@@ -28,7 +28,7 @@ const AddNewTask = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && task && category && time && newDate) {
-      fetch(`http://localhost:5000/tasks`, {
+      fetch(`https://enigmatic-caverns-77732.herokuapp.com/tasks`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -49,7 +49,7 @@ const AddNewTask = () => {
       if (event.key === "Enter") {
         event.preventDefault();
         if (email && task && category && time && date) {
-          fetch(`http://localhost:5000/tasks`, {
+          fetch(`https://enigmatic-caverns-77732.herokuapp.com/tasks`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -75,7 +75,7 @@ const AddNewTask = () => {
     return <div></div>;
   }
   return (
-    <div className="addNewTask mt-10">
+    <div className="addNewTask my-10">
       <div >
         {" "}
         <DayPicker

@@ -15,7 +15,7 @@ const Home = () => {
   const todayTasks = tasks.filter((t) => t.newDate === today);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myTasks?email=${email}`)
+    fetch(`https://enigmatic-caverns-77732.herokuapp.com/myTasks?email=${email}`)
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, [email, tasks]);
@@ -28,7 +28,7 @@ const Home = () => {
   };
   const handleCompleted = (item) => {
     console.log(item);
-    fetch(`http://localhost:5000/completed`, {
+    fetch(`https://enigmatic-caverns-77732.herokuapp.com/completed`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,7 @@ const Home = () => {
       });
   };
   const handleRemoving = (id) => {
-    fetch(`http://localhost:5000/task/${id}`, {
+    fetch(`https://enigmatic-caverns-77732.herokuapp.com/task/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -58,7 +58,7 @@ const Home = () => {
 
 
   return (
-    <div className="home">
+    <div className={tasks.length <= 2 && 'noData'}>
       {!user && (
         <div
           className="hero min-h-screen"
