@@ -1,24 +1,61 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebase.init";
 import useDate from "../../hooks/useDate";
+import Loading from "../Shared/Loading";
 
 const Home = () => {
+  const navigate = useNavigate()
   const [user, loading, error] = useAuthState(auth);
   const { today } = useDate();
+
   const email = user?.email;
   const [tasks, setTasks] = useState([]);
-  const todayTasks = tasks.filter((t) => t.date === today);
+  const todayTasks = tasks.filter((t) => t.newDate === today);
 
   useEffect(() => {
     fetch(`http://localhost:5000/myTasks?email=${email}`)
       .then((res) => res.json())
       .then((data) => setTasks(data));
-  }, [email]);
-  if (loading) {
-    return <p>loading...</p>;
+  }, [email, tasks]);
+  const handleMoving = (id) => {
+    const item = tasks.find((t) => t._id === id);
+    handleCompleted(item);
+    setTimeout(() => {
+      handleRemoving(id);
+    }, 1000);
+  };
+  const handleCompleted = (item) => {
+    console.log(item);
+    fetch(`http://localhost:5000/completed`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(item),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+  const handleRemoving = (id) => {
+    fetch(`http://localhost:5000/task/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+  const handleEdit = (id) =>{
+
   }
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
 
   return (
     <div className="home">
@@ -59,14 +96,15 @@ const Home = () => {
             </p>
           )}
 
-          <div class="overflow-x-auto">
-            <table class="table">
+          <div className="overflow-x-auto">
+            <table className="table">
               <thead>
                 <tr>
                   <th>Task</th>
-                  <th>Category</th>
+                  <th>Description</th>
                   <th>Time</th>
-                  <th>Action</th>
+                  <th>Check Completed</th>
+                  <th>Edit</th>
                 </tr>
               </thead>
               <tbody>
@@ -76,7 +114,31 @@ const Home = () => {
                     <td>{t.category}</td>
                     <td>{t.time}</td>
                     <td>
-                      <button class="btn btn-primary">Completed</button>
+                      <label className="label cursor-pointer">
+                        <input
+                          onClick={() => handleMoving(t._id)}
+                          type="checkbox"
+                          className="checkbox checkbox-primary"
+                        />
+                      </label>
+                    </td>
+                    <td>
+                    <button onClick={() => navigate(`/${t._id}`)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                      />
+                    </svg>
+                  </button>
                     </td>
                   </tr>
                 ))}
@@ -85,9 +147,10 @@ const Home = () => {
                 <tfoot>
                   <tr>
                     <th>Task</th>
-                    <th>Category</th>
+                    <th>Description</th>
                     <th>Time</th>
-                    <th>Action</th>
+                    <th>Check Completed</th>
+                    <th>Edit</th>
                   </tr>
                 </tfoot>
               )}

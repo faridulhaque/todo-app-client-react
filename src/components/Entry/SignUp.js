@@ -34,7 +34,7 @@ const SignUp = () => {
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   
   if (loading || gLoading || updating) {
-    return <p>loading</p>;
+    return <p></p>;
   }
   if(user || gUser){
     

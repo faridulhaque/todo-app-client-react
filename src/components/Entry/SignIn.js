@@ -29,7 +29,7 @@ const SignIn = () => {
 
   const navigate = useNavigate();
   if (loading || gLoading) {
-    return <p>Loading...</p>;
+    return ;
   }
   if (user || gUser) {
     navigate(from, { replace: true });

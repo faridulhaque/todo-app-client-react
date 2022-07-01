@@ -13,7 +13,7 @@ const Navbar = () => {
       .catch((error) => {});
   };
   if (loading) {
-    return <p>loading...</p>;
+    return <p></p>;
   }
 
   return (
@@ -47,7 +47,7 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                  <Link to="/addTask">Add New Task</Link>
+                  <Link to="/addNewTask">Calendar</Link>
                 </li>
                 <li>
                   <Link to="/todo">To Do</Link>
@@ -85,8 +85,8 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              <li className="tooltip tooltip-bottom" data-tip="Add New Task">
-                <Link to="/addTask">
+              <li className="tooltip tooltip-bottom" data-tip="Calendar">
+                <Link to="/addNewTask">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -98,7 +98,7 @@ const Navbar = () => {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
                   </svg>
                 </Link>
@@ -144,35 +144,47 @@ const Navbar = () => {
         )}
 
         <div className="navbar-end">
-          <ul className='menu menu-horizontal p-0'>
-            <li className="tooltip tooltip-bottom"
-              data-tip="Sign In">
+          <ul className="menu menu-horizontal p-0">
+            <li className="tooltip tooltip-bottom" data-tip="Sign In">
               {!user ? (
-            <Link className="text-white" to="signIn"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-          </svg></Link>
-          ) : (
-            <button
-              onClick={handleSignOut}
-              className="tooltip tooltip-bottom"
-              data-tip="Sign Out"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="white"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
-            </button>
-          )}
+                <Link className="text-white" to="signIn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="white"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                    />
+                  </svg>
+                </Link>
+              ) : (
+                <button
+                  onClick={handleSignOut}
+                  className="tooltip tooltip-bottom"
+                  data-tip="Sign Out"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="white"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                </button>
+              )}
             </li>
           </ul>
         </div>

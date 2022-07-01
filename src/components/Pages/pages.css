@@ -1,26 +1,62 @@
-.home{
+.home {
     width: 100%;
 }
-.addTask-wrapper{
+
+.addTask-wrapper {
     display: flex;
     justify-content: center;
     margin-top: 0;
     width: 100%;
 
-    
+
 }
-.card-body{
+
+.addNewTask {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+}
+
+.card-body {
     width: 400px;
     border-radius: 25px;
     box-shadow: 0 4px 8px 0 rgb(38, 49, 82, 0.2), 0 6px 20px 0 rgb(38, 49, 82, 0.19);
 }
-.table{
+
+.form-wrapper {
+    width: 400px;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgb(38, 49, 82, 0.2), 0 6px 20px 0 rgb(38, 49, 82, 0.19);
+}
+
+.table {
     width: 80%;
     margin: 10% 10%;
 }
-/* @media only screen and (max-width: 570px) {
-    .card-body{
-        width: 96%;
-        margin: 0 2%;
-    } */
-/* } */
+
+.form {
+    width: 400px;
+    padding: 20px;
+    margin-top: 50px;
+    height: 500px;
+    box-shadow: 0 4px 8px 0 rgb(38, 49, 82, 0.2), 0 6px 20px 0 rgb(38, 49, 82, 0.19);
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 570px) {
+    .addNewTask {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+    .form {
+        width: 90%;
+        margin: 0 5%;
+        
+    }
+}
