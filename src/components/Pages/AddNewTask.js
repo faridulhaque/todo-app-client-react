@@ -5,12 +5,12 @@ import { auth } from "../../firebase/firebase.init";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { format } from "date-fns";
+import { Alert } from "react-st-modal";
 
 const AddNewTask = () => {
   const [user, loading, error] = useAuthState(auth);
   const [date, setDate] = useState(new Date());
-  const newDate = format(date, 'yyyy-MM-dd')
-
+  const newDate = format(date, "yyyy-MM-dd");
 
   const [task, setTask] = useState("");
   const [category, setCategory] = useState("");
@@ -25,7 +25,7 @@ const AddNewTask = () => {
     email,
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (email && task && category && time && newDate) {
       fetch(`https://enigmatic-caverns-77732.herokuapp.com/tasks`, {
@@ -37,15 +37,17 @@ const AddNewTask = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          alert("data added successfully");
+          if (data.acknowledged) {
+            Alert("Data added successfully","Great!");
+          }
         });
     } else {
-      alert("Don't leave an input field empty");
+      await Alert("Don't leave an input field empty","Alert!");
     }
   };
 
   useEffect(() => {
-    const keyDownHandler = (event) => {
+    const keyDownHandler = async (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
         if (email && task && category && time && date) {
@@ -58,10 +60,12 @@ const AddNewTask = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              alert("data added successfully");
+              if (data.acknowledged) {
+                Alert("Data added successfully","Wonderful");
+              }
             });
         } else {
-          alert("Don't leave an input field empty");
+          await Alert("Don't leave an input field empty","Alert!");
         }
       }
     };
@@ -76,14 +80,13 @@ const AddNewTask = () => {
   }
   return (
     <div className="addNewTask my-10">
-      <div >
+      <div>
         {" "}
         <DayPicker
           mode="single"
           selected={format(date, "yyyy-MM-dd")}
           onSelect={setDate}
         />
-        
       </div>
       <form className="form-wrapper">
         <div className="card-body">

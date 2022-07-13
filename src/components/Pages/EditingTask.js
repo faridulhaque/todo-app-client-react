@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/firebase.init";
+import { Alert } from "react-st-modal";
 
 const EditingTask = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -14,7 +15,7 @@ const EditingTask = () => {
         setTask(data);
       });
   }, [task]);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const task = e.target.task.value;
     const category = e.target.category.value;
@@ -39,12 +40,14 @@ const EditingTask = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data)
-          alert("Data updated successfully")
+            if(data.acknowledged){
+
+              Alert("Data updated successfully","Wonderful!")
+            }
         });
     }
      else {
-      alert("You must fill out the input fields");
+      await Alert("You must fill out the input fields","Alert!");
     }
   };
   return (
