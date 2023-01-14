@@ -15,6 +15,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
+    height: 100vh;
 }
 
 .card-body {
@@ -23,11 +24,14 @@
     box-shadow: 0 4px 8px 0 rgb(38, 49, 82, 0.2), 0 6px 20px 0 rgb(38, 49, 82, 0.19);
 }
 
-.form-wrapper {
+/* .form-wrapper {
     width: 400px;
     border-radius: 25px;
     box-shadow: 0 4px 8px 0 rgb(38, 49, 82, 0.2), 0 6px 20px 0 rgb(38, 49, 82, 0.19);
-}
+    background-color: red;
+    height: 600px;
+
+} */
 
 .table {
     width: 80%;
@@ -51,7 +55,7 @@
     height: auto;
 }
 .noData{
-    height: 100vh;
+    height: 90vh;
 }
 
 @media only screen and (max-width: 570px) {
