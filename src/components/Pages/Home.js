@@ -15,7 +15,7 @@ const Home = () => {
   const todayTasks = tasks.filter((t) => t.newDate === today);
 
   useEffect(() => {
-    fetch(`https://enigmatic-caverns-77732.herokuapp.com/myTasks?email=${email}`)
+    fetch(`https://my-todo-app-production.up.railway.app/myTasks?email=${email}`)
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, [email, tasks]);
@@ -28,7 +28,7 @@ const Home = () => {
   };
   const handleCompleted = (item) => {
     console.log(item);
-    fetch(`https://enigmatic-caverns-77732.herokuapp.com/completed`, {
+    fetch(`https://my-todo-app-production.up.railway.app/completed`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,7 @@ const Home = () => {
       });
   };
   const handleRemoving = (id) => {
-    fetch(`https://enigmatic-caverns-77732.herokuapp.com/task/${id}`, {
+    fetch(`https://my-todo-app-production.up.railway.app/task/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

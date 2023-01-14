@@ -28,7 +28,7 @@ const AddNewTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email && task && category && time && newDate) {
-      fetch(`https://enigmatic-caverns-77732.herokuapp.com/tasks`, {
+      fetch(`https://my-todo-app-production.up.railway.app/tasks`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -51,7 +51,7 @@ const AddNewTask = () => {
       if (event.key === "Enter") {
         event.preventDefault();
         if (email && task && category && time && date) {
-          fetch(`https://enigmatic-caverns-77732.herokuapp.com/tasks`, {
+          fetch(`https://my-todo-app-production.up.railway.app/tasks`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

@@ -9,7 +9,7 @@ const EditingTask = () => {
   const [task, setTask] = useState({});
   const { id } = useParams();
   useEffect(() => {
-    fetch(`https://enigmatic-caverns-77732.herokuapp.com/taskediting/${id}`)
+    fetch(`https://my-todo-app-production.up.railway.app/taskediting/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTask(data);
@@ -31,7 +31,7 @@ const EditingTask = () => {
     };
     if (task && category && time && newDate && email) {
 
-        fetch(`https://enigmatic-caverns-77732.herokuapp.com/editTask/${email}`, {
+        fetch(`https://my-todo-app-production.up.railway.app/editTask/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
